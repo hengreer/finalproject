@@ -1,0 +1,11 @@
+Importing data in head needs to be in specific order, bootstrap first then my style sheet.
+This ensures my styling isn't overridden, for example with  h1,h2,p. 
+We are combining two stylesheets and then the CSS cascade determines which rules are applied.
+
+Bootstrap will be used to handle grids and forms.
+
+I had some issues with the product images, I had 4 images created off real products but used AI to make the photos look better.
+I had different aspect ratios for the photos. I created a class and used object-fit:contain, however I realised I needed a box to put them in. 
+I created a class productImageBox and set this a max height to force the images to be the same size.
+
+In the hero item I added an image and some text, as it was hard to ready I added an overlay.
