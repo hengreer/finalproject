@@ -19,6 +19,7 @@ header {
     text-align: center;
     padding: 30px;
     background-color: var(--card);
+    margin: 0 auto;
 }
 
 body {
