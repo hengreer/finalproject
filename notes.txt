@@ -1,11 +1,52 @@
-Importing data in head needs to be in specific order, bootstrap first then my style sheet.
-This ensures my styling isn't overridden, for example with  h1,h2,p. 
-We are combining two stylesheets and then the CSS cascade determines which rules are applied.
+Development Notes
 
-Bootstrap will be used to handle grids and forms.
+CSS and Bootstrap
 
-I had some issues with the product images, I had 4 images created off real products but used AI to make the photos look better.
-I had different aspect ratios for the photos. I created a class and used object-fit:contain, however I realised I needed a box to put them in. 
-I created a class productImageBox and set this a max height to force the images to be the same size.
+Importing the stylesheets in the <head> needs to be done in a specific order. Bootstrap is loaded first, followed by my own stylesheet. 
+This allows my custom CSS to override Bootstrap styles where the selectors have the same specificity. 
+For example, I can customise elements such as headings and paragraphs. 
+This demonstrates how the CSS cascade determines which rules are applied when combining multiple stylesheets.
+Bootstrap will be used to handle grids and forms, while my own CSS will be used for the site's branding and more specific styling.
 
-In the hero item I added an image and some text, as it was hard to ready I added an overlay.
+Product Images
+
+I had four product images created from the real products, but used AI to improve the presentation of the product photographs. 
+The images had different aspect ratios, which made it difficult to display them consistently.
+I created a productImage class and used object-fit: contain so that the products would not be distorted or cropped. 
+However, I realised that I also needed a consistent container for the images. 
+I created a productImageBox class and set a maximum height so that the product images would occupy a consistent amount of space.
+
+Hero Section
+
+For the hero section I added a background image with text and a Shop Now button. 
+The text was difficult to read against the photograph, so I added a semi-transparent dark overlay to improve the contrast and 
+readability while still allowing the image to remain visible.
+
+Privacy Policy and Terms and Conditions
+I used free online templates as a starting point for the Privacy Policy and Terms and Conditions, adapting them for the purposes of this website. 
+This reflects how I would approach these supporting pages when developing a real website.
+
+FreeAPI
+https://api.freeapi.app/#/
+
+FreeAPI provides a large number of e-commerce API options, but I chose not to use its e-commerce functionality. 
+Instead, I used its authentication functionality to handle user registration and login. 
+This allowed me to demonstrate API authentication without unnecessarily replacing the product catalogue and shop functionality that I wanted to develop myself.
+
+Contact Form
+https://www.w3schools.com/Js/js_api_fetch.asp?
+
+For the contact form I primarily used HTML validation, including appropriate input types and required fields.
+ I also implemented JavaScript validation for the email address, checking that it followed a valid format. 
+ If the email is invalid, an error message is displayed; once a valid email is entered, the error message is removed.
+I also used JavaScript to check that a contact reason had been selected and that the terms checkbox had been ticked.
+The submitted contact forms are processed using Formspree and forwarded to a single inbox. 
+I considered whether it would be possible to automatically send a reply to the person submitting the form, 
+but this would have required additional email-service functionality that was outside the scope of the coursework.
+I made the contact form's submit function asynchronous and used await with the Fetch API. 
+This allowed the application to wait for a response from Formspree and check whether the request was successful before displaying the thank-you message. 
+I used the W3Schools Fetch API documentation to understand how to implement this.
+
+When adding Bootstrap to the contact form, I noticed that Bootstrap's default styling changed the appearance of the <legend> within my fieldset. 
+I added custom CSS to override these Bootstrap styles and restore the appearance I wanted. 
+This demonstrated how custom CSS can be used alongside Bootstrap when the framework's default styling doesn't meet the required design.

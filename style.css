@@ -37,7 +37,9 @@ h1, h2 {
 }
 
 /* Set the button styles */
-.buttonLinks{
+.buttonLinks,
+input[type="submit"],
+input[type="reset"] {
     display: inline-block;
     padding: 10px 20px;
     background-color: var(--white);
@@ -56,13 +58,17 @@ a{
 
 /* Set the button hover styles */
 .buttonLinks:hover,
-a:hover{
+a:hover,
+input[type="submit"]:hover,
+ input[type="reset"]:hover{
     border-color: var(--card-hover);    
     color: var(--white);
     transform: translateY(-4px);
 }
 
-.buttonLinks:hover{
+.buttonLinks:hover,
+input[type="submit"]:hover,
+ input[type="reset"]:hover{
     box-shadow: 0 0 18px rgba(198, 36, 34, 0.6);
     background-color: var(--primary);
 }
@@ -142,4 +148,49 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+/*contact page */
+
+#emailError,
+#phoneError {
+    color: var(--primary);
+    font-size: 0.9em;
+}
+
+#thank-you-message {
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+input[type="submit"],
+input[type="reset"] {
+    cursor: pointer;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+fieldset {
+    border: 1px solid var(--primary);
+    padding: 20px;
+    border-radius:8px;
+    margin-bottom: 20px;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+fieldset legend {
+    float: none;
+    width: auto;
+    padding: 0 5px;
+    color: var(--white);
 }
