@@ -153,7 +153,9 @@ main {
 /*contact page */
 
 #emailError,
-#phoneError {
+#phoneError,
+#registerError,
+.textError {
     color: var(--primary);
     font-size: 0.9em;
 }

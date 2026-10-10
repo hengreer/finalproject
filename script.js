@@ -63,14 +63,16 @@ if (form) {
 
         const response = await fetch(form.action, {
             method: 'POST',
-            body: formData
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
         });
-        
         if (!response.ok) {
             alert("Error in sending, please try again. Or email example@email.com");
             return;
         }
-        
+
         form.style.display = 'none';
 
         document.getElementById('thank-you-message').classList.remove('d-none');

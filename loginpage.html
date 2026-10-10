@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ForgedFit Shop</title>
+    <title>Login | Registration</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
@@ -14,7 +14,7 @@
 </head>
 
 <body>
-<!-- https://www.w3schools.com/bootstrap5/bootstrap_navbar.php -->
+
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="forgedfitindex.html">
@@ -38,53 +38,48 @@
         </div>
     </nav>
 
-    <header>
-        <h1>ForgedFit Example Shop</h1>
-    </header>
+    <main>
 
-    <main>       
-        <section class="hero">
-            <div id="overlay">
-                <h2 class="heroText">ForgedFit</h2>
+        <header>
+            <h1>User Login | Registration</h1>
+        </header>
 
-                <p class="heroText">
-                    Train stronger.
-                    Feel Stronger.
-                </p>
-                <p>
-                    <a href="shop.html" class="buttonLinks">
-                        Shop Now
-                    </a>
-                </p>
+        <div class="forgedCard">
+        <h2>Register</h2> <br>
+        <form 
+        name="registerForm" 
+        id="registerForm"
+        method ="POST">
+            Username: <input type="text" placeholder="Please enter a username." name="usernameRegister" id="usernameRegister"> <br>
+            Password: <input type="password" placeholder="Please enter a password." name="passwordRegister" id="passwordRegister"> <br>
+            Confirm Password: <input type="password" placeholder="Please confirm your password." name="passwordRegisterCheck" id="passwordRegisterCheck"> <br>
+            Email: <input type="text" placeholder="Please enter your email address." name="emailRegister" id="emailRegister"> <br>
+            
+            <button type="submit" class="buttonLinks" id="registerButton">Submit</button>
+            <input type="reset" id="clearButtonRegister" value="Clear">
+
+            <p id="registerSuccess" class="d-none fw-bold"></p>
             </div>
-        </section>
-       
-    
-        <section class="forgedCard">
-            <h2>Featured Products</h2>
-            <div class="row g-4">
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="productImageBox">
-                        <img src="images/pinkTshirtDryWick.png" alt="Shortsleeve T-Shirt in Pink with Forged Fit Logo" class="img-fluid rounded productImage">
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="productImageBox">
-                        <img src="images/zipHoody.png" alt="Zip Hoodie in black with red trim with Forged Fit Logo" class="img-fluid rounded productImage">
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="productImageBox">
-                        <img src="images/shaker.png" alt="Black Shaker Bottle with Forged Fit Logo" class="img-fluid rounded productImage">
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="productImageBox">
-                        <img src="images/gymBag.png" alt="Gym Bag with Forged Fit Logo" class="img-fluid rounded productImage">
-                    </div>
-                </div>
+        </form>
+
+        <div class="forgedCard">
+
+        <h2>Login</h2>
+
+        <form
+        name="loginForm"
+        id="loginForm"
+        method ="POST">
+            Username: <input type="text" placeholder="Please enter a username." name="usernameLogin" id="usernameLogin"> <br>
+            Password: <input type="password" placeholder="Please enter a password." name="passwordLogin" id="passwordLogin"> <br>
+            
+            <button type="submit" class="buttonLinks" id="loginButton">Login</button>
+            <input type="reset" id="clearButtonLogin" value="Clear">
+
+            <p id="loginSuccess" class="d-none fw-bold"></p>
+
             </div>
-        </section>
+        </form>
 
     </main>
 
@@ -111,5 +106,6 @@
     </footer>
 
 </body>
-
 </html>
+
+

@@ -50,3 +50,42 @@ I used the W3Schools Fetch API documentation to understand how to implement this
 When adding Bootstrap to the contact form, I noticed that Bootstrap's default styling changed the appearance of the <legend> within my fieldset. 
 I added custom CSS to override these Bootstrap styles and restore the appearance I wanted. 
 This demonstrated how custom CSS can be used alongside Bootstrap when the framework's default styling doesn't meet the required design.
+
+
+Registration Form
+I had some issues initially getting the form to work, I was getting errors back. 
+Using cosole to look at the data before I sent it confirmed I was sending correct information.
+Then looking at the data coming back showed an error, once I used data.error I could see the issues, which were I was missign the headers.
+Once I put those in I started getting postive reponses back.
+
+The login form was very simply after getting the registration to work. 
+Once confirmed I was being logged in I stored the token to local storage to allow the user to change pages and stay logged in.
+
+There are many other features I could use, a reset password, forgot username, logout, email verification.
+for the scope of this coursework I have not implemented them, ---HENRY CHECK THIS BEFORE SUBMITTING--- the registration and login shows use of the API effectively.
+
+Token/Account pages
+Once I had a token and was storing it I was able to write a quick function to check if we had one.
+If we did I changed the login page to the account page and then could show the current user logged in.
+
+I discovered that by having a token the function to check if there was one was reading as correct, but the token may be invalid or the user invalid.
+In those cases the token was deleted from local storage forcing the user to log in again.
+
+I have added in a .textError style to the css to change the colour of any errors that occur when registering, logging in, or out.
+This should make it more obvious to the user there is an issue.
+
+Loutout
+I have added in the log out feature. Upon a failure to log out I have decided to not delete the locally stored token.
+I could have deleted the token and then informed the user of the server side error, however this would lead to the user still being logged in.
+It may have caused issues when attempting to login to the account in the future, with the user potentially having to wait until the token timed out.
+
+
+
+TO DO
+-On registration - when recieve the ok, show a user registered. - check to see if works
+-on Login - when receive the ok, show login succesful, then move to account page, or store page - check to see if works
+-Make registration and login a bit prettier.
+
+Shop and Basket not yet touched - might not even be needed to scope of project.
+-Log out button, delete token.
+-Add addresses, delete addresses, edit addresses.
