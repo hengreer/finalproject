@@ -15,28 +15,42 @@
 
 <body>
 
+    
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="forgedfitindex.html">
-            <img src="images/forgedFitLogo.png" alt="Forged Fit Logo" style="width:50px;" class="rounded"> 
+                <img src="images/forgedFitLogo.png"
+                    alt="Forged Fit Home"
+                    style="width:50px;"
+                    class="rounded">
             </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapsibleNavbar"
+                    aria-controls="collapsibleNavbar"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            </button>
+
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                    <a class="nav-link" href="shop.html">Shop</a>
+                        <a class="nav-link" href="shop.html">Shop</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="basket.html">Basket</a>
+                        <a class="nav-link" href="basket.html">Basket</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="loginpage.html" id="accountLink">Login</a>
+                        <a class="nav-link" href="loginpage.html" id="accountLink">Login</a>
                     </li>
                 </ul>
+            </div>
         </div>
     </nav>
+
 
     <main>
 
@@ -45,41 +59,78 @@
         </header>
 
         <div class="forgedCard">
-        <h2>Register</h2> <br>
-        <form 
-        name="registerForm" 
-        id="registerForm"
-        method ="POST">
-            Username: <input type="text" placeholder="Please enter a username." name="usernameRegister" id="usernameRegister"> <br>
-            Password: <input type="password" placeholder="Please enter a password." name="passwordRegister" id="passwordRegister"> <br>
-            Confirm Password: <input type="password" placeholder="Please confirm your password." name="passwordRegisterCheck" id="passwordRegisterCheck"> <br>
-            Email: <input type="text" placeholder="Please enter your email address." name="emailRegister" id="emailRegister"> <br>
-            
-            <button type="submit" class="buttonLinks" id="registerButton">Submit</button>
-            <input type="reset" id="clearButtonRegister" value="Clear">
+            <h2>Register</h2>
 
-            <p id="registerSuccess" class="d-none fw-bold"></p>
-            </div>
-        </form>
+            <form name="registerForm" id="registerForm" method="POST">
+                <div class="form-row">
+                    <label for="usernameRegister">Username:</label>
+                    <input type="text" placeholder="Please enter a username."
+                        name="usernameRegister" id="usernameRegister">
+                </div>
+
+                <div class="form-row">
+                    <label for="passwordRegister">Password:</label>
+                    <input type="password" placeholder="Please enter a password."
+                        name="passwordRegister" id="passwordRegister">
+                </div>
+
+                <div class="form-row">
+                    <label for="passwordRegisterCheck">Confirm Password:</label>
+                    <input type="password" placeholder="Please confirm your password."
+                        name="passwordRegisterCheck" id="passwordRegisterCheck">
+                </div>
+
+                <div class="form-row">
+                    <label for="emailRegister">Email:</label>
+                    <input type="email" placeholder="Please enter your email address."
+                        name="emailRegister" id="emailRegister">
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" class="buttonLinks" id="registerButton">Submit</button>
+                    <input type="reset" id="clearButtonRegister" value="Clear">
+                </div>
+
+                <p id="registerSuccess" class="d-none fw-bold"></p>
+            </form>
+        </div>
 
         <div class="forgedCard">
+            <h2>Login</h2>
 
-        <h2>Login</h2>
+            <form name="loginForm" id="loginForm" method="POST">
+                <div class="form-row">
+                    <label for="usernameLogin">Username:</label>
+                    <input type="text" placeholder="Please enter a username."
+                        name="usernameLogin" id="usernameLogin">
+                </div>
 
-        <form
-        name="loginForm"
-        id="loginForm"
-        method ="POST">
-            Username: <input type="text" placeholder="Please enter a username." name="usernameLogin" id="usernameLogin"> <br>
-            Password: <input type="password" placeholder="Please enter a password." name="passwordLogin" id="passwordLogin"> <br>
-            
-            <button type="submit" class="buttonLinks" id="loginButton">Login</button>
-            <input type="reset" id="clearButtonLogin" value="Clear">
+                <div class="form-row">
+                    <label for="passwordLogin">Password:</label>
+                    <input type="password" placeholder="Please enter a password."
+                        name="passwordLogin" id="passwordLogin">
+                </div>
 
-            <p id="loginSuccess" class="d-none fw-bold"></p>
+                <div class="form-buttons">
+                    <button type="submit" class="buttonLinks" id="loginButton">Login</button>
+                    <input type="reset" id="clearButtonLogin" value="Clear">
+                </div>
 
-            </div>
-        </form>
+                <p id="loginSuccess" class="d-none fw-bold"></p>
+            </form>
+        </div>
+
+        <div id="logoutSection" class="d-none forgedCard">
+            <h2>Logout</h2>
+
+            <form name="logoutForm" id="logoutForm" method="POST">
+                <button type="submit" class="buttonLinks" id="logoutButton">
+                    Logout
+                </button>
+
+                <p id="logoutSuccess" class="d-none fw-bold"></p>
+            </form>
+        </div>
 
     </main>
 

@@ -1,9 +1,7 @@
-/* Import Google Fonts Oswald and Poppins in limited weights. 
-Also using display=swap to ensure text is visible while fonts are loading. */
+/* FONTS AND COLOUR VARIABLES */
 
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap');
 
-/* Set the colour scheme for the application */
 :root {
     --primary: #C62422;
     --white: #fefefe;
@@ -13,19 +11,21 @@ Also using display=swap to ensure text is visible while fonts are loading. */
     --text-muted: #ccc;
 }
 
-/* Set the header alignment and colour, main body styles, and title colours and fonts */
+
+/* GENERAL PAGE STYLES */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--dark);
+    color: var(--white);
+    margin: 0;
+}
 
 header {
     text-align: center;
     padding: 30px;
     background-color: var(--card);
     margin: 0 auto;
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: rgba(0, 0, 0);
-    color: var(--white);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -36,7 +36,30 @@ h1, h2 {
     color: var(--primary);
 }
 
-/* Set the button styles */
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+
+/* GENERAL LINKS AND ACCESSIBILITY */
+
+a {
+    text-decoration: none;
+    color: var(--primary);
+    transition: color 0.2s;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid var(--white);
+    outline-offset: 3px;
+}
+
+
+/* BUTTONS */
+
 .buttonLinks,
 input[type="submit"],
 input[type="reset"] {
@@ -47,42 +70,56 @@ input[type="reset"] {
     border: 2px solid var(--primary);
     text-decoration: none;
     border-radius: 5px;
-    transition: 0.2s;
+    transition: background-color 0.2s,
+                color 0.2s,
+                border-color 0.2s,
+                box-shadow 0.2s,
+                transform 0.2s;
+    cursor: pointer;
 }
 
-a{
-    text-decoration: none;
-    color: var(--primary);
-    transition: 0.2s;
-}
-
-/* Set the button hover styles */
 .buttonLinks:hover,
-a:hover,
 input[type="submit"]:hover,
- input[type="reset"]:hover{
-    border-color: var(--card-hover);    
+input[type="reset"]:hover {
+    border-color: var(--card-hover);
+    background-color: var(--primary);
     color: var(--white);
+    box-shadow: 0 0 18px rgba(198, 36, 34, 0.6);
     transform: translateY(-4px);
 }
 
-.buttonLinks:hover,
-input[type="submit"]:hover,
- input[type="reset"]:hover{
-    box-shadow: 0 0 18px rgba(198, 36, 34, 0.6);
-    background-color: var(--primary);
+
+/* NAVBAR */
+
+.navbar .nav-link {
+    color: var(--text-muted);
+    transition: color 0.2s;
+}
+
+.navbar .nav-link:hover {
+    color: var(--primary);
+    transform: none;
+}
+
+/* Logo is the home button */
+.navbar-brand img {
+    transition: box-shadow 0.2s;
+}
+
+.navbar-brand:hover img {
+    box-shadow: 0 0 12px rgba(198, 36, 34, 0.6);
 }
 
 
-/* Keyboard navigation styles for accessability*/
-a:focus-visible,
-.buttonLinks:focus-visible {
-    outline: 3px solid var(--white);
-    outline-offset: 3px;
+/* CARDS AND LINKS */
+
+.forgedCard {
+    background-color: var(--card);
+    padding: 20px 30px 30px;
+    margin: 20px 0;
+    border-radius: 8px;
 }
 
-
-/* set the link class display styles */
 .links {
     display: flex;
     gap: 20px;
@@ -90,67 +127,52 @@ a:focus-visible,
     justify-content: flex-start;
 }
 
-/* Set the backgroundcard styles */
-.forgedCard {
-    background-color: var(--card);
-    padding: 20px 30px 30px 30px;
-    margin: 20px 0;
-    border-radius: 8px;
-}
 
-/* Set the main content width and center it */
-main {
-    max-width: 1100px;
-    margin: 0 auto;
-}
+/* PRODUCT IMAGES */
 
-/* Product Image Styles */
-.productImageBox{
+.productImageBox {
     height: 250px;
 }
+
 .productImage {
     object-fit: contain;
     height: 100%;
     width: 100%;
-
 }
 
 
-/*Hero Section*/
-.hero{
+/* HERO SECTION */
+
+.hero {
     background-image: url('images/weightlitingWoman.png');
     background-size: contain;
     background-position: center;
-    background-repeat: no-repeat;   
+    background-repeat: no-repeat;
     height: 600px;
-    }
+}
 
-.heroText{
+.heroText {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     color: var(--white);
 }
-
-/* The Brand name is first child, we want that to standout more*/
 
 .heroText:first-child {
     font-size: 3rem;
     font-weight: 700;
 }
 
-/*https://www.w3schools.com/HOWTO/howto_css_overlay.asp*/
-
-#overlay{
+#overlay {
     background-color: rgba(0, 0, 0, 0.5);
     height: 100%;
     width: 100%;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-/*contact page */
+
+/* ERROR MESSAGES AND FORM FEEDBACK */
 
 #emailError,
 #phoneError,
@@ -160,6 +182,9 @@ main {
     font-size: 0.9em;
 }
 
+
+/* CONTACT FORM */
+
 #thank-you-message {
     border: 2px solid var(--primary);
     border-radius: 8px;
@@ -167,9 +192,23 @@ main {
     text-align: center;
 }
 
-input[type="submit"],
-input[type="reset"] {
-    cursor: pointer;
+form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+fieldset {
+    border: 1px solid var(--primary);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+fieldset legend {
+    float: none;
+    width: auto;
+    padding: 0 5px;
+    color: var(--white);
 }
 
 .form-buttons {
@@ -178,21 +217,55 @@ input[type="reset"] {
     gap: 10px;
 }
 
-fieldset {
-    border: 1px solid var(--primary);
-    padding: 20px;
-    border-radius:8px;
-    margin-bottom: 20px;
-}
 
-form {
-    max-width: 600px;
+/* LOGIN AND REGISTRATION FORMS */
+
+#registerForm,
+#loginForm {
+    max-width: 500px;
     margin: 0 auto;
 }
 
-fieldset legend {
-    float: none;
-    width: auto;
-    padding: 0 5px;
-    color: var(--white);
+.form-row {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.form-row label {
+    text-align: right;
+    margin: 0;
+}
+
+.form-row input {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+#registerForm button,
+#loginForm button,
+#registerForm input[type="reset"],
+#loginForm input[type="reset"] {
+    margin-top: 8px;
+}
+
+
+/* RESPONSIVE FORM LAYOUT */
+
+@media (max-width: 576px) {
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .form-row label {
+        text-align: left;
+    }
+
+    .form-buttons {
+        justify-content: flex-start;
+    }
 }

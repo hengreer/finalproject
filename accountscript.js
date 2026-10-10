@@ -74,11 +74,12 @@ if(loginForm){
 
     loginForm.addEventListener('submit', async function(event){
         event.preventDefault();
+        const loginSuccess = document.getElementById("loginSuccess");
+
         try {
 
-            const loginSuccess = document.getElementById("loginSuccess")
             loginSuccess.classList.remove('textError');
-            loginSuccess.classList.add('d-none')
+            loginSuccess.classList.add('d-none');
 
             const urlAddress ="https://api.freeapi.app/api/v1/users/login";
 
@@ -90,8 +91,8 @@ if(loginForm){
                 username: formUsername
             };
 
-            const formData = JSON.stringify(user)
-            console.log(formData)
+            const formData = JSON.stringify(user);
+            console.log(formData);
 
             const response = await fetch(urlAddress, {
                 method: 'POST',
@@ -117,12 +118,12 @@ if(loginForm){
                 loginSuccess.classList.add('textError');
                 localStorage.removeItem("accessToken");
                 updateAccountLink();
-                throw new Error("Unable to fetch Login details");
+                return
             }
 
             //store the token locally so user can change pages and still stay logged in.
             localStorage.setItem("accessToken", data.data.accessToken);
-
+            document.getElementById("logoutSuccess").classList.add('d-none');
             updateAccountLink();
             
         }
@@ -143,10 +144,10 @@ const logoutForm = document.getElementById('logoutForm');
 
 if(logoutForm){
     logoutForm.addEventListener('submit', async function(event){
+        const logoutSuccess = document.getElementById("logoutSuccess")
         event.preventDefault();
         const token = localStorage.getItem("accessToken");
-        const logoutSuccess = document.getElementById("logoutSuccess")
-        
+                
         try {
 
             const urlAddress ="https://api.freeapi.app/api/v1/users/logout";            
@@ -175,6 +176,15 @@ if(logoutForm){
                 }
 
                 localStorage.removeItem("accessToken");
+
+                 if(document.getElementById("loginSuccess")){
+                    document.getElementById("loginSuccess").classList.add('d-none');
+                 }
+
+                if(document.getElementById("welcomeUsername")){
+                    document.getElementById("welcomeUsername").textContent = 
+                `Please log in to view your account.`;}
+
                 updateAccountLink();
 
 
@@ -198,6 +208,7 @@ if(logoutForm){
 function updateAccountLink(){
     const accountLink = document.getElementById("accountLink");
     const token = localStorage.getItem("accessToken");
+    const logoutSection = document.getElementById("logoutSection");
 
     if(accountLink){
         if(token) {
@@ -207,6 +218,10 @@ function updateAccountLink(){
             accountLink.textContent = "Login";
             accountLink.href = "loginpage.html"
         }
+    }
+
+    if (logoutSection) {
+        logoutSection.classList.toggle('d-none', !token);
     }
 }
 
