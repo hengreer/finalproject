@@ -23,8 +23,7 @@ The text was difficult to read against the photograph, so I added a semi-transpa
 readability while still allowing the image to remain visible.
 
 Privacy Policy and Terms and Conditions
-I used free online templates as a starting point for the Privacy Policy and Terms and Conditions, adapting them for the purposes of this website. 
-This reflects how I would approach these supporting pages when developing a real website.
+I have created these pages but intentionally left them with little to no content. In the real world these would have the relevant policies added
 
 FreeAPI
 https://api.freeapi.app/#/
@@ -58,6 +57,8 @@ Using cosole to look at the data before I sent it confirmed I was sending correc
 Then looking at the data coming back showed an error, once I used data.error I could see the issues, which were I was missign the headers.
 Once I put those in I started getting postive reponses back.
 
+I use required for all boxes, and add a reggex for the email format for a final check that the email looks valid before submitting the registration.
+
 The login form was very simply after getting the registration to work. 
 Once confirmed I was being logged in I stored the token to local storage to allow the user to change pages and stay logged in.
 
@@ -79,13 +80,15 @@ I have added in the log out feature. Upon a failure to log out I have decided to
 I could have deleted the token and then informed the user of the server side error, however this would lead to the user still being logged in.
 It may have caused issues when attempting to login to the account in the future, with the user potentially having to wait until the token timed out.
 
+One difficulty I found with freeAPI is working out what it allowed.
+For example, a user can register as an ADMIN, but I couldn't find docuementation for other allowed roles.
 
+Storing addresses were quite simple, the only issue if the freeAPI requried them to have a 6 digit PIN/post code.
+This means you can't actually save correct UK addresses but it works for the purpose shows.
+Getting the loading address to work was difficult. Initially I had tried to have the display set up and then edit the HTML with the address data.
+This would mean I would need as many boxes as address that could be entered.
+In the end I had to create a function in the script to create a separate card for each address.
 
-TO DO
--On registration - when recieve the ok, show a user registered. - check to see if works
--on Login - when receive the ok, show login succesful, then move to account page, or store page - check to see if works
--Make registration and login a bit prettier.
 
 Shop and Basket not yet touched - might not even be needed to scope of project.
--Log out button, delete token.
 -Add addresses, delete addresses, edit addresses.

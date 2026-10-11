@@ -5,10 +5,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Henry Greer | Final Project</title>
+    <title>ForgedFit | Basket</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
     <script src="accountscript.js" defer></script>
 
 </head>
@@ -16,13 +16,12 @@
 <body>
 
     
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+       <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="forgedfitindex.html">
                 <img src="images/forgedFitLogo.png"
                     alt="Forged Fit Home"
-                    style="width:50px;"
-                    class="rounded">
+                    class="rounded navbarLogo">
             </a>
 
             <button class="navbar-toggler"
@@ -53,11 +52,30 @@
 
 
     <main>
+        <section class="forgedCard">
+            <h1>Shopping Basket</h1>
 
+            <p>
+                <strong>Demo website:</strong> This basket is for demonstration
+                purposes only. Products cannot currently be added to the basket,
+                and checkout and purchases are not available.
+            </p>
 
+            <div class="card p-4">
+                <h2 class="h4">Your Basket</h2>
+
+                <p>
+                    Your basket is currently empty.
+                </p>
+
+                <a href="shop.html" class="buttonLinks continueShopping">
+                    Continue Shopping
+                </a>
+            </div>
+        </section>
     </main>
 
-    <footer style="text-align: center; padding: 20px; background-color: var(--card); color: var(--text-muted);">
+    <footer>
 
         <p>
            <a href="https://www.forgedfitgyms.co.uk/" target="_blank" rel="noopener noreferrer">

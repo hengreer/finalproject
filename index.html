@@ -8,7 +8,7 @@
     <title>Henry Greer | Final Project</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
 
 </head>
 
@@ -22,30 +22,46 @@
 
         <h2 style="text-align: center;">Shop Website</h2>
 
-        <p style="text-align: center;">
-            For My final project, I have created a shop website for my partner's local business, ForgedFit Gyms.
+        <p>
+            For my final project, I developed a shop website concept for ForgedFit Gyms, a local business owned by my partner.
         </p>
-        <p style="text-align: center;">
-            The website will not actually allow you to purchase products nor store any information.
-            It will allow you to browse the products, add to a cart, and then "checkout".
-            This will then send a confirmation email to the address you provide.
+        <p>
+            The website features a homepage, product presentation, navigation, user registration and login. 
+            Once logged in, users can access their account, view their saved delivery addresses and submit new addresses through a form. 
+            The website also includes a contact form and links to its terms and conditions and privacy policy.
         </p>
-        <br>
+
+        <p>
+            The project demonstrates the web development techniques covered during the module, including HTML, CSS, 
+            JavaScript, Bootstrap, form validation and API integration. I used the FreeAPI service to handle account 
+            authentication and retrieve and submit address data. The contact form uses Formspree to handle submissions.
+        </p>
+        <p>
+            Rather than implementing a complete e-commerce checkout, I focused on account management and address handling
+             to demonstrate how a web application can collect user input, communicate with external services and display returned data.
+
+        </p>
+
         <section class="forgedCard">
-            <h2>Design Choices </h2>
-            <p>
-                I have used the same themes and colours as the main ForgedFit website to keep branding consistent.
-            </p>
-            <p>
-                I have used a combination of Bootstrap and custom CSS to create a responsive design that works well on both desktop and mobile devices.
-            </p>
-
+            <h2>Design Choices</h2>
 
             <p>
-                Please use this link to go to the website proper.
+                I used the colours and visual style of the existing ForgedFit Gyms
+                website to maintain consistent branding.
             </p>
 
-            <a href="https://hengreer.github.io/finalproject/forgedfitindex.html" target="_blank" class="buttonLinks">
+            <p>
+                I combined Bootstrap with custom CSS to create a responsive layout
+                for desktop and mobile screens. Bootstrap handles some layout and
+                styling, while custom CSS controls the branding and appearance.
+            </p>
+
+            <p>Explore the completed shop website below.</p>
+
+            <a href="forgedfitindex.html" 
+            target="_blank" 
+            class="buttonLinks" 
+            rel="noopener noreferrer">
                 ForgedFit Shop
             </a>
             
@@ -56,7 +72,7 @@
 
             <div class="links">
 
-                <a href="https://www.forgedfitgyms.co.uk/" target="_blank" class="buttonLinks">
+                <a href="https://www.forgedfitgyms.co.uk/" target="_blank" rel="noopener noreferrer" class="buttonLinks">
                     ForgedFit Gyms
                 </a>
 

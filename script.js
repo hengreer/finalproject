@@ -33,11 +33,17 @@ if (form) {
 
         emailError.classList.add('d-none');
 
-        const phoneEdit = formPhone.replace(/\s/g, '')
+        const contactType = form.querySelector(
+            'input[name="contactType"]:checked'
+        )?.value;
 
-        if (phoneEdit.length != 10 && phoneEdit.length !=11){
-            phoneError.classList.remove('d-none');
-            return;
+        if (contactType === "contactPhone" || contactType === "contactText") {
+            const phoneEdit = formPhone.replace(/\s/g, '');
+
+            if (phoneEdit.length != 10 && phoneEdit.length != 11) {
+                phoneError.classList.remove('d-none');
+                return;
+            }
         }
 
         phoneError.classList.add('d-none');
@@ -58,25 +64,29 @@ if (form) {
             return;
         }
 
+        try {
+            const formData = new FormData(form);
 
-        const formData = new FormData(form);
-
-        const response = await fetch(form.action, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'Accept': 'application/json'
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            if (!response.ok) {
+                alert("Error in sending, please try again. Or email example@email.com");
+                return;
             }
-        });
-        if (!response.ok) {
-            alert("Error in sending, please try again. Or email example@email.com");
-            return;
+
+            form.style.display = 'none';
+
+            document.getElementById('thank-you-message').classList.remove('d-none');
+        } catch (error) {
+            alert("Unable to send your message. Please check your connection and try again.");
+            console.error("Contact form submission failed:", error);
         }
 
-        form.style.display = 'none';
-
-        document.getElementById('thank-you-message').classList.remove('d-none');
-    
     });
 
     const textarea = document.getElementById("message");

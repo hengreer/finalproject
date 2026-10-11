@@ -3,6 +3,8 @@ const registerForm = document.getElementById('registerForm');
 
 if(registerForm){
     registerForm.addEventListener('submit', async function(event){
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
         event.preventDefault();
         try {
 
@@ -17,10 +19,16 @@ if(registerForm){
             let formUsername = document.forms["registerForm"]["usernameRegister"].value;
             let formPassCheck = document.forms["registerForm"]["passwordRegisterCheck"].value;
 
+            if (!emailPattern.test(formEmail)) {
+                registerSuccess.textContent = "Please enter a valid email address.";
+                registerSuccess.classList.remove('d-none');
+                registerSuccess.classList.add('textError');
+                return;
+            }
 
             if (formPassword !== formPassCheck){
-                registerSuccess.textContent = 'Passwords do not Match.'
-                registerSuccess.classList.remove('d-none')
+                registerSuccess.textContent = 'Passwords do not Match.';
+                registerSuccess.classList.remove('d-none');
                 registerSuccess.classList.add('textError');
                 return
             }
@@ -183,7 +191,8 @@ if(logoutForm){
 
                 if(document.getElementById("welcomeUsername")){
                     document.getElementById("welcomeUsername").textContent = 
-                `Please log in to view your account.`;}
+                `Please log in to view your account.`;
+                }
 
                 updateAccountLink();
 
@@ -286,7 +295,217 @@ async function getCurrentUser(){
         
 }
 
-if (document.getElementById("welcomeUsername")) {
-    getCurrentUser();
+////////////////////////Saved Addresses/////////////////////////
+
+async function getAddresses(){    
+   
+    const urlCurrentAddresses = "https://api.freeapi.app/api/v1/ecommerce/addresses?page=1&limit=10"
+    const addressError = document.getElementById("addressLoadError")
+    
+    const addressList = document.getElementById("addressList");
+    const token = localStorage.getItem("accessToken");
+
+    addressError.classList.add('d-none')
+
+     try {
+
+        if (!token) {
+            addressList.textContent = "Please log in to view your addresses.";
+            return;
+        }
+
+        const responseAddress = await fetch(urlCurrentAddresses, {
+            method: 'GET',
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }, 
+        });                   
+            
+        const dataAddress = await responseAddress.json();
+        console.log(dataAddress);
+
+            /*check response, is 401, invalid token, or 404, user not found, remove current token */
+            if (responseAddress.status === 401 || responseAddress.status === 404) {
+                localStorage.removeItem("accessToken");                    
+                addressError.classList.add('textError');
+                addressError.classList.remove('d-none'); 
+                addressError.textContent = 'Session invalid. Log in again'
+                updateAccountLink();
+                return
+            }
+
+            if (!responseAddress.ok){
+                addressError.classList.add('textError');
+                addressError.classList.remove('d-none');
+                addressError.textContent = "Unable to fetch address details.";
+                return 
+            }
+            
+            
+            const addresses = dataAddress.data.addresses;
+            /*clear old data*/
+            addressList.replaceChildren();
+
+            if (addresses.length === 0) {
+                addressList.textContent = "You have no saved addresses.";
+                return;
+            }
+
+            addresses.forEach(function(address) {
+
+                const card = document.createElement("div");
+                card.className = "addressCard";
+
+                const heading = document.createElement("h3");
+                heading.className = "h5";
+                heading.textContent = "Delivery Address";
+
+                const addressLine1 = document.createElement("p");
+                addressLine1.className = "mb-1";
+                addressLine1.textContent = address.addressLine1;
+
+                const addressLine2 = document.createElement("p");
+                addressLine2.className = "mb-1";
+                addressLine2.textContent = address.addressLine2 || "";
+
+                const city = document.createElement("p");
+                city.className = "mb-1";
+                city.textContent = address.city;
+
+                const state = document.createElement("p");
+                state.className = "mb-1";
+                state.textContent = address.state;
+
+                const pincode = document.createElement("p");
+                pincode.className = "mb-1";
+                pincode.textContent = address.pincode;
+
+                const country = document.createElement("p");
+                country.className = "mb-0";
+                country.textContent = address.country;
+
+                card.append(
+                    heading,
+                    addressLine1,
+                    addressLine2,
+                    city,
+                    state,
+                    pincode,
+                    country
+                );
+
+                addressList.appendChild(card);
+            });
+       
+    }
+
+    catch (error) {
+        console.log(error);
+        addressError.textContent = "Unable to load addresses. Please try again.";
+        addressError.classList.add('textError');
+        addressError.classList.remove('d-none');
+    }
 }
 
+
+////////////////////////Add Address/////////////////////////
+
+const addressForm = document.getElementById('addressForm');
+
+if (addressForm) {
+    addressForm.addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+        const addressSuccess = document.getElementById("addressSuccess");
+        const addressError = document.getElementById("addressError");
+        const pinError = document.getElementById("pinError")
+
+        pinError.classList.add('d-none');
+
+        addressSuccess.classList.add('d-none');
+        addressSuccess.classList.remove('textError');
+        addressError.classList.add('d-none');
+
+        try {
+            const token = localStorage.getItem("accessToken");
+
+            if (!token) {
+                addressError.textContent = "Please log in to save an address.";
+                addressError.classList.remove('d-none');
+                return;
+            }
+
+            /*check PIN is 6 digits*/
+
+            if(document.getElementById("pincode").value.length != 6){
+                pinError.textContent = "Pin Error, please enter 6 digit PIN";
+                pinError.classList.remove('d-none');
+                pinError.classList.add('textError');
+                return;               
+            };
+
+            const urlAddress = "https://api.freeapi.app/api/v1/ecommerce/addresses";
+
+            const address = {
+                addressLine1: document.getElementById("addressLine1").value.trim(),
+                addressLine2: document.getElementById("addressLine2").value.trim(),
+                city: document.getElementById("city").value.trim(),
+                state: document.getElementById("state").value.trim(),
+                pincode: Number(document.getElementById("pincode").value),
+                country: document.getElementById("country").value
+            };
+      
+
+            const response = await fetch(urlAddress, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify(address)
+            });
+
+            const data = await response.json();
+            console.log(data);
+
+            addressSuccess.textContent = data.message || "Address saved successfully.";
+            addressSuccess.classList.remove('d-none');
+
+            if (!response.ok) {
+                addressSuccess.classList.add('textError');
+                throw new Error(data.message || "Unable to save address.");
+            }
+
+            // Clear the form after a successful save.
+            addressForm.reset();
+
+            // Refresh the saved address list.
+            await getAddresses();
+
+        } catch (error) {
+            console.log(error);
+
+            addressSuccess.textContent =
+                "Unable to save address. Please check the details and try again.";
+            addressSuccess.classList.add('textError');
+            addressSuccess.classList.remove('d-none');
+        }
+    });
+}
+
+////////////////////////Check for account page and run functions/////////////////////////
+
+if (document.getElementById("welcomeUsername")) {
+    const token = localStorage.getItem("accessToken");
+
+    if(!token){
+        addressList.replaceChildren();
+        document.getElementById("savedAddressMessage").textContent =
+        `Please log in to view Addresses.`;
+        document.getElementById("addDeliveryMessage").classList.add('d-none');
+        document.getElementById("addressForm").classList.add('d-none');
+    } else{
+        getCurrentUser();
+        getAddresses();
+    }
+}

@@ -39,6 +39,13 @@ h1, h2 {
 main {
     max-width: 1100px;
     margin: 0 auto;
+    padding: 0 15px;
+}
+
+.characterCounter {
+    font-size: 0.8em;
+    text-align: right;
+    color: var(--text-muted);
 }
 
 
@@ -52,7 +59,9 @@ a {
 
 a:focus-visible,
 button:focus-visible,
-input:focus-visible {
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
     outline: 3px solid var(--white);
     outline-offset: 3px;
 }
@@ -88,6 +97,10 @@ input[type="reset"]:hover {
     transform: translateY(-4px);
 }
 
+.continueShopping {
+    display: inline-block;
+    width: fit-content;
+}
 
 /* NAVBAR */
 
@@ -98,7 +111,7 @@ input[type="reset"]:hover {
 
 .navbar .nav-link:hover {
     color: var(--primary);
-    transform: none;
+    text-decoration: underline;
 }
 
 /* Logo is the home button */
@@ -106,10 +119,42 @@ input[type="reset"]:hover {
     transition: box-shadow 0.2s;
 }
 
-.navbar-brand:hover img {
+.navbar-brand:hover img,
+.addressCard:hover,
+.card:hover {
     box-shadow: 0 0 12px rgba(198, 36, 34, 0.6);
 }
 
+.navbarLogo{
+    width: 50px;
+}
+
+.navbar .nav-link:focus-visible {
+    outline: 3px solid var(--white);
+    outline-offset: 3px;
+    box-shadow: none;
+}
+
+/* footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--card);
+    color: var(--text-muted);
+}
+
+/* Footer links */
+footer a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.2s ease;            
+}
+
+footer a:hover,
+.textLinks:hover{
+    color: var(--white);
+    text-decoration: underline;
+}
 
 /* CARDS AND LINKS */
 
@@ -122,11 +167,22 @@ input[type="reset"]:hover {
 
 .links {
     display: flex;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
     margin-top: 20px;
     justify-content: flex-start;
 }
 
+.card {
+    background-color: var(--card);
+    color: var(--white);
+    border: 1px solid var(--card-hover);
+}
+
+.card .form-control {
+    background-color: var(--white);
+    color: var(--dark);
+}
 
 /* PRODUCT IMAGES */
 
@@ -140,6 +196,15 @@ input[type="reset"]:hover {
     width: 100%;
 }
 
+/* Saved address cards */
+.addressCard {
+    background-color: var(--card-hover);
+    color: var(--white);
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
 
 /* HERO SECTION */
 
@@ -148,7 +213,13 @@ input[type="reset"]:hover {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    height: 600px;
+    height: 350px;
+}
+
+@media (min-width: 768px) {
+    .hero {
+        height: 600px;
+    }
 }
 
 .heroText {
@@ -213,7 +284,7 @@ fieldset legend {
 
 .form-buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 10px;
 }
 
@@ -228,14 +299,13 @@ fieldset legend {
 
 .form-row {
     display: grid;
-    grid-template-columns: 150px 1fr;
-    align-items: center;
-    gap: 12px;
+    grid-template-columns: 1fr;
+    gap: 4px;
     margin-bottom: 12px;
 }
 
 .form-row label {
-    text-align: right;
+    text-align: left;
     margin: 0;
 }
 
@@ -245,27 +315,22 @@ fieldset legend {
     box-sizing: border-box;
 }
 
+/* Larger screens */
+@media (min-width: 577px) {
+    .form-row {
+        grid-template-columns: 150px 1fr;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .form-row label {
+        text-align: right;
+    }
+}
+
 #registerForm button,
 #loginForm button,
 #registerForm input[type="reset"],
 #loginForm input[type="reset"] {
     margin-top: 8px;
-}
-
-
-/* RESPONSIVE FORM LAYOUT */
-
-@media (max-width: 576px) {
-    .form-row {
-        grid-template-columns: 1fr;
-        gap: 4px;
-    }
-
-    .form-row label {
-        text-align: left;
-    }
-
-    .form-buttons {
-        justify-content: flex-start;
-    }
 }
