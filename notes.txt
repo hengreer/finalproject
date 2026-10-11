@@ -2,93 +2,139 @@ Development Notes
 
 CSS and Bootstrap
 
-Importing the stylesheets in the <head> needs to be done in a specific order. Bootstrap is loaded first, followed by my own stylesheet. 
-This allows my custom CSS to override Bootstrap styles where the selectors have the same specificity. 
-For example, I can customise elements such as headings and paragraphs. 
-This demonstrates how the CSS cascade determines which rules are applied when combining multiple stylesheets.
-Bootstrap will be used to handle grids and forms, while my own CSS will be used for the site's branding and more specific styling.
+Importing the stylesheets in the `<head>` needs to be done in the correct order. Bootstrap is loaded first, followed by my own stylesheet. 
+This allows my CSS to override Bootstrap's styles where the selectors have the same specificity and my rules come later in the stylesheet order.
+Bootstrap is used for the grids, forms and general layout, while my own CSS is used for the site's branding and more specific styling. 
+This includes the colours, fonts, buttons and other elements that make the website consistent with the ForgedFit brand.
 
 Product Images
 
-I had four product images created from the real products, but used AI to improve the presentation of the product photographs. 
-The images had different aspect ratios, which made it difficult to display them consistently.
-I created a productImage class and used object-fit: contain so that the products would not be distorted or cropped. 
-However, I realised that I also needed a consistent container for the images. 
-I created a productImageBox class and set a maximum height so that the product images would occupy a consistent amount of space.
+I had two product images created from the real products, but used AI to improve the presentation of the photographs and generate 2 more.
+The images had different aspect ratios, which made it difficult to display them consistently. 
+I created a `productImage` class and used `object-fit: contain` so the products would not be distorted or cropped. 
+However, I also needed a consistent container for the images, so I created a `productImageBox` class with a set height. 
+This means the images take up a consistent amount of space even though the products themselves have different shapes and sizes.
 
 Hero Section
 
-For the hero section I added a background image with text and a Shop Now button. 
-The text was difficult to read against the photograph, so I added a semi-transparent dark overlay to improve the contrast and 
-readability while still allowing the image to remain visible.
+For the hero section I added a background image with text and a Shop Now button. The text was difficult to read against 
+the photograph, so I added a semi-transparent dark overlay to improve the contrast and readability while still allowing the image to remain visible.
 
 Privacy Policy and Terms and Conditions
-I have created these pages but intentionally left them with little to no content. In the real world these would have the relevant policies added
+
+I created these pages but kept the content to a minimum because the website is a demonstration project. 
+The pages explain that no purchases can be made and no products will be delivered. If this were a real online shop, 
+the relevant policies and terms would need to be added.
 
 FreeAPI
+
 https://api.freeapi.app/#/
 
-FreeAPI provides a large number of e-commerce API options, but I chose not to use its e-commerce functionality. 
-Instead, I used its authentication functionality to handle user registration and login. 
-This allowed me to demonstrate API authentication without unnecessarily replacing the product catalogue and shop functionality that I wanted to develop myself.
+FreeAPI provides a large number of e-commerce API options, but I chose not to use its e-commerce functionality.
+ Instead, I used its authentication functionality to handle user registration, login, logout, and address storage and retrieval
+
+This allowed me to demonstrate API authentication without replacing the product catalogue and shop functionality that I wanted to develop myself.
 
 Contact Form
-https://www.w3schools.com/Js/js_api_fetch.asp?
 
-For the contact form I primarily used HTML validation, including appropriate input types and required fields.
- I also implemented JavaScript validation for the email address, checking that it followed a valid format. 
- If the email is invalid, an error message is displayed; once a valid email is entered, the error message is removed.
-I also used JavaScript to check that a contact reason had been selected and that the terms checkbox had been ticked.
+https://www.w3schools.com/Js/js_api_fetch.asp
+
+For the contact form I primarily used HTML validation, including appropriate input types and required fields. 
+I also implemented JavaScript validation for the email address to check that it followed a valid format. 
+If the email is invalid, an error message is displayed, and the message is removed once the email is valid.
+
+I also used JavaScript to check that a contact reason had been selected and that the terms checkbox had been ticked. 
+Phone number validation is used when the user chooses phone or text as their preferred contact method.
+
 The submitted contact forms are processed using Formspree and forwarded to a single inbox. 
 I considered whether it would be possible to automatically send a reply to the person submitting the form, 
-but this would have required additional email-service functionality that was outside the scope of the coursework.
-I made the contact form's submit function asynchronous and used await with the Fetch API. 
-This allowed the application to wait for a response from Formspree and check whether the request was successful before displaying the thank-you message. 
-I used the W3Schools Fetch API documentation to understand how to implement this.
+but this would have required additional email functionality that was outside the scope of the coursework.
 
-When adding Bootstrap to the contact form, I noticed that Bootstrap's default styling changed the appearance of the <legend> within my fieldset. 
-I added custom CSS to override these Bootstrap styles and restore the appearance I wanted. 
-This demonstrated how custom CSS can be used alongside Bootstrap when the framework's default styling doesn't meet the required design.
+I made the contact form's submit function asynchronous and used `await` with the Fetch API. 
+This allows the application to wait for a response from Formspree and check whether the request was successful before displaying 
+the thank-you message. I used the W3Schools Fetch API documentation to understand how to implement this.
 
+When adding Bootstrap to the contact form, I noticed that its default styling changed the appearance of 
+the `<legend>` within my fieldset. I added custom CSS to override these styles and restore the 
+appearance I wanted. This showed me how custom CSS can be used alongside Bootstrap when the framework's default styling doesn't meet the design requirements.
 
 Registration Form
-I had some issues initially getting the form to work, I was getting errors back. 
-Using cosole to look at the data before I sent it confirmed I was sending correct information.
-Then looking at the data coming back showed an error, once I used data.error I could see the issues, which were I was missign the headers.
-Once I put those in I started getting postive reponses back.
 
-I use required for all boxes, and add a reggex for the email format for a final check that the email looks valid before submitting the registration.
+I had some issues initially getting the registration form to work, as I was getting errors back from the API. 
+Using the console to look at the data before sending it confirmed that I was sending the information I expected. 
+Looking at the response showed that there was an error. Once I inspected the error message, I found that I was
+ missing the headers in the request. After adding these, I started getting successful responses.
 
-The login form was very simply after getting the registration to work. 
-Once confirmed I was being logged in I stored the token to local storage to allow the user to change pages and stay logged in.
+I use `required` for fields where an entry is needed and added a regular expression to check the email format before submitting the registration.
+The registration request includes the `USER` role. I initially had some difficulty working out which 
+roles the API supported, so I tested the available behaviour and confirmed that `USER` worked.
 
-There are many other features I could use, a reset password, forgot username, logout, email verification.
-for the scope of this coursework I have not implemented them, ---HENRY CHECK THIS BEFORE SUBMITTING--- the registration and login shows use of the API effectively.
+The login form was much simpler to implement once registration was working. After confirming that login was
+ successful, I stored the access token in local storage. This allows the user to move between pages without having to log in again each time.
 
-Token/Account pages
-Once I had a token and was storing it I was able to write a quick function to check if we had one.
-If we did I changed the login page to the account page and then could show the current user logged in.
+There are other features I could have added, such as password resets, forgotten usernames and email verification.
+I decided not to implement these because they were outside the scope of the coursework.
 
-I discovered that by having a token the function to check if there was one was reading as correct, but the token may be invalid or the user invalid.
-In those cases the token was deleted from local storage forcing the user to log in again.
+Token and Account Pages
 
-I have added in a .textError style to the css to change the colour of any errors that occur when registering, logging in, or out.
-This should make it more obvious to the user there is an issue.
+Once I had a token stored in local storage, I was able to write a function to check whether one existed. 
+If a token was present, the navigation link could change from Login to Account, and the account page could display the current user's details.
+I discovered that having a token stored locally did not necessarily mean it was valid. 
+The token could have expired or the user session could be invalid. I added checks to the API responses 
+so that an invalid session could be identified and the token removed, requiring the user to log in again.
 
-Loutout
-I have added in the log out feature. Upon a failure to log out I have decided to not delete the locally stored token.
-I could have deleted the token and then informed the user of the server side error, however this would lead to the user still being logged in.
-It may have caused issues when attempting to login to the account in the future, with the user potentially having to wait until the token timed out.
+I also added a `.textError` class to the CSS to change the colour of error messages when registering, 
+logging in or logging out. This makes it easier for users to identify when something has gone wrong.
 
-One difficulty I found with freeAPI is working out what it allowed.
-For example, a user can register as an ADMIN, but I couldn't find docuementation for other allowed roles.
+I updated the account page so that the saved addresses and address form are hidden when the user is logged out. 
+The address list is also cleared when logging out, rather than leaving the previous user's information visible until the page is refreshed.
 
-Storing addresses were quite simple, the only issue if the freeAPI requried them to have a 6 digit PIN/post code.
-This means you can't actually save correct UK addresses but it works for the purpose shows.
-Getting the loading address to work was difficult. Initially I had tried to have the display set up and then edit the HTML with the address data.
-This would mean I would need as many boxes as address that could be entered.
-In the end I had to create a function in the script to create a separate card for each address.
+Logout
 
+I added a logout feature that sends a request to the API. If the request succeeds, the locally stored token is removed and the account page is updated.
+If the logout request fails, I decided not to remove the token automatically. 
+This avoids clearing the local session when the server has not confirmed that logout was successful. 
+However, keeping the token locally does not guarantee that the server session is still valid.
 
-Shop and Basket not yet touched - might not even be needed to scope of project.
--Add addresses, delete addresses, edit addresses.
+Addresses
+
+Saving addresses was fairly straightforward. The main issue was that FreeAPI requires 
+a six-digit numeric PIN rather than a standard UK postcode. This means that normal UK addresse
+s cannot be entered in the usual format, although the feature still demonstrates submitting and retrieving address data through the API.
+
+Getting the saved addresses to display correctly was more difficult. Initially, I tried to set 
+up the display in the HTML and then fill it with the address data. However, this would mean needing a fixed number of address containers.
+
+In the end, I created a function in JavaScript that builds a separate card for each address
+ returned by the API. This means the page can display different numbers of saved addresses without
+  needing to create each card manually in the HTML.
+
+Shop and Basket
+
+I developed the shop page using Bootstrap's responsive grid and card components to display four ForgedFit products. I
+used custom CSS to maintain the dark theme and added a hover effect to the product cards.
+
+The product images had different aspect ratios, so I used a consistent image container and `object-fit: contain` to prevent distortion and cropping.
+The shop and basket are demonstration features. Products cannot currently be added to the basket,
+ and checkout and payment processing have not been implemented. This limitation is communicated to the user on the relevant pages.
+
+Accessibility and Validation
+
+I validated the HTML pages using the W3C Markup Validation Service and corrected the issues identified.
+I also tested keyboard navigation, including moving between form controls and selecting checkboxes 
+without using a mouse. I used visible focus indicators to make the currently focused control easier to identify.
+
+Form labels, appropriate input types, required fields, and error and status messages were 
+used to improve usability and accessibility. I also checked that the website layout and navigation worked at different screen sizes.
+
+Testing and Limitations
+
+I tested registration, login, logout, address saving and address retrieval, including scenarios
+ where invalid information or credentials were entered. I checked that appropriate error messages were displayed when requests failed.
+
+The address feature has a limitation because FreeAPI requires a six-digit numeric PIN rather 
+than a standard UK postcode. The feature therefore demonstrates API data submission and retrieval but does not fully support real UK address formats.
+
+The shop and basket are also limited to demonstration purposes, as products cannot be added to the basket and purchases cannot be made.
+
+The website is hosted on GitHub Pages, and the project files will be supplied in a ZIP archive alongside the public website URL.
