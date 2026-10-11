@@ -192,6 +192,14 @@ if(logoutForm){
                 if(document.getElementById("welcomeUsername")){
                     document.getElementById("welcomeUsername").textContent = 
                 `Please log in to view your account.`;
+                    document.getElementById("addressList").replaceChildren();
+
+                    document.getElementById("savedAddressMessage").textContent =
+                        "Please log in to view addresses.";
+
+                    document.getElementById("addressForm").classList.add("d-none");
+
+                    document.getElementById("addDeliveryMessage").classList.add("d-none");
                 }
 
                 updateAccountLink();
@@ -499,6 +507,8 @@ if (document.getElementById("welcomeUsername")) {
     const token = localStorage.getItem("accessToken");
 
     if(!token){
+        document.getElementById("welcomeUsername").textContent = 
+                `Please log in to view your account.`;
         addressList.replaceChildren();
         document.getElementById("savedAddressMessage").textContent =
         `Please log in to view Addresses.`;
