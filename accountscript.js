@@ -36,7 +36,7 @@ if(registerForm){
             const user = {
                 email: formEmail,
                 password: formPassword,
-                role: "ADMIN",
+                role: "USER",
                 username: formUsername
             };
 
