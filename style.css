@@ -9,6 +9,7 @@
     --card: #1a1a1a;
     --card-hover: #2a2a2a;
     --text-muted: #ccc;
+    --hover-contrast: #66CCFF;
 }
 
 
@@ -110,7 +111,7 @@ input[type="reset"]:hover {
 }
 
 .navbar .nav-link:hover {
-    color: var(--primary);
+    color: var(--hover-contrast);
     text-decoration: underline;
 }
 
@@ -145,14 +146,14 @@ footer {
 
 /* Footer links */
 footer a {
-    color: var(--primary);
+    color: var(--text-muted);
     text-decoration: none;
     transition: color 0.2s ease;            
 }
 
 footer a:hover,
 .textLinks:hover{
-    color: var(--white);
+    color: var(--hover-contrast);
     text-decoration: underline;
 }
 

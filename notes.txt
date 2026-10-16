@@ -127,6 +127,20 @@ without using a mouse. I used visible focus indicators to make the currently foc
 Form labels, appropriate input types, required fields, and error and status messages were 
 used to improve usability and accessibility. I also checked that the website layout and navigation worked at different screen sizes.
 
+Colour contrast results from https://webaim.org/resources/contrastchecker/
+Primary Red on primary dark  3.4:1. Ok for h1 and h2. But not for small text. 
+Primary Red on card          3.04:1 Ok for h1 and h2. But not for small text. 
+white on primary dark is 19.27:1. Ok for all text.
+White on card is 17.25:1 Ok for all text.
+text-Muted on primary dark is 12.1:1 Ok for all text.
+text-muted on card is 10.83:1 Ok for all text.
+
+The CSS was updated to change the footer to text-muted, and the hover effects have been changed to a light blue
+hover-contrast on card 9.65:1 Ok for all text.
+hover-contrast on card-hover 7.96:1 Ok for all text.
+hover-contrast on primary dark 10.77:1 Ok for all text.
+
+
 Testing and Limitations
 
 I tested registration, login, logout, address saving and address retrieval, including scenarios
